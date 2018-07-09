@@ -1,0 +1,557 @@
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{93462217-F49C-4AFE-AB6D-7E4B15B34C5E}</ProjectGuid>
+    <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>NEOSxGUI</RootNamespace>
+    <AssemblyName>NEOSx GUI</AssemblyName>
+    <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
+    <UseXamMacFullFramework>true</UseXamMacFullFramework>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CodeSigningKey>Mac Developer</CodeSigningKey>
+    <CreatePackage>false</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <UseSGen>true</UseSGen>
+    <UseRefCounting>true</UseRefCounting>
+    <PlatformTarget>x86</PlatformTarget>
+    <AOTMode>None</AOTMode>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CreatePackage>true</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>true</IncludeMonoRuntime>
+    <UseSGen>true</UseSGen>
+    <UseRefCounting>true</UseRefCounting>
+    <LinkMode>None</LinkMode>
+    <PlatformTarget>x86</PlatformTarget>
+    <AOTMode>None</AOTMode>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.Mac" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Numerics.Vectors" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.2.1.1\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileSystemGlobbing">
+      <HintPath>..\packages\Microsoft.Extensions.FileSystemGlobbing.2.1.1\lib\netstandard2.0\Microsoft.Extensions.FileSystemGlobbing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.ObjectPool">
+      <HintPath>..\packages\Microsoft.Extensions.ObjectPool.2.1.1\lib\netstandard2.0\Microsoft.Extensions.ObjectPool.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers">
+      <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable">
+      <HintPath>..\packages\System.Collections.Immutable.1.5.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.5.0\lib\netstandard1.3\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Metadata">
+      <HintPath>..\packages\System.Reflection.Metadata.1.6.0\lib\netstandard2.0\System.Reflection.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.1\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory">
+      <HintPath>..\packages\System.Memory.4.5.1\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Features">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Features.2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Server.Abstractions">
+      <HintPath>..\packages\Microsoft.AspNetCore.Hosting.Server.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Binder.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.EnvironmentVariables">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.EnvironmentVariables.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Configuration.EnvironmentVariables.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Physical">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Physical.2.1.1\lib\netstandard2.0\Microsoft.Extensions.FileProviders.Physical.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.FileExtensions">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.FileExtensions.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Configuration.FileExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Hosting.Abstractions">
+      <HintPath>..\packages\Microsoft.Extensions.Hosting.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Hosting.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options">
+      <HintPath>..\packages\Microsoft.Extensions.Options.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Net.Http.Headers">
+      <HintPath>..\packages\Microsoft.Net.Http.Headers.2.1.1\lib\netstandard2.0\Microsoft.Net.Http.Headers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web">
+      <HintPath>..\packages\System.Text.Encodings.Web.4.5.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Abstractions">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Abstractions">
+      <HintPath>..\packages\Microsoft.AspNetCore.Hosting.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Hosting.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Extensions">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Extensions.2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.WebUtilities">
+      <HintPath>..\packages\Microsoft.AspNetCore.WebUtilities.2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.WebUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting">
+      <HintPath>..\packages\Microsoft.AspNetCore.Hosting.2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.ResponseCompression">
+      <HintPath>..\packages\Microsoft.AspNetCore.ResponseCompression.2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.ResponseCompression.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Pipelines">
+      <HintPath>..\packages\System.IO.Pipelines.4.5.0\lib\netstandard2.0\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Connections.Abstractions">
+      <HintPath>..\packages\Microsoft.AspNetCore.Connections.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Connections.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions">
+      <HintPath>..\packages\Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Server.Kestrel.Core">
+      <HintPath>..\packages\Microsoft.AspNetCore.Server.Kestrel.Core.2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Server.Kestrel.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Server.Kestrel.Https">
+      <HintPath>..\packages\Microsoft.AspNetCore.Server.Kestrel.Https.2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Server.Kestrel.Https.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets">
+      <HintPath>..\packages\Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Server.Kestrel">
+      <HintPath>..\packages\Microsoft.AspNetCore.Server.Kestrel.2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Server.Kestrel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv">
+      <HintPath>..\packages\Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.WebSockets.WebSocketProtocol">
+      <HintPath>..\packages\System.Net.WebSockets.WebSocketProtocol.4.5.1\lib\netstandard2.0\System.Net.WebSockets.WebSocketProtocol.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.WebSockets">
+      <HintPath>..\packages\Microsoft.AspNetCore.WebSockets.2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.WebSockets.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.core">
+      <HintPath>..\packages\SQLitePCLRaw.core.1.1.11\lib\Xamarin.Mac20\SQLitePCLRaw.core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Sqlite">
+      <HintPath>..\packages\Microsoft.Data.Sqlite.Core.2.1.0\lib\netstandard2.0\Microsoft.Data.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Abstractions">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Linq">
+      <HintPath>..\packages\Remotion.Linq.2.2.0\lib\portable-net45+win+wpa81+wp80\Remotion.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Memory">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Memory.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Caching.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Interactive.Async">
+      <HintPath>..\packages\System.Interactive.Async.3.1.1\lib\netstandard1.3\System.Interactive.Async.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.2.1.1\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Relational">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Relational.2.1.1\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.provider.e_sqlite3">
+      <HintPath>..\packages\SQLitePCLRaw.provider.e_sqlite3.macos.1.1.11\lib\Xamarin.Mac20\SQLitePCLRaw.provider.e_sqlite3.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_green">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.11\lib\Xamarin.Mac20\SQLitePCLRaw.batteries_green.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_v2">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.11\lib\Xamarin.Mac20\SQLitePCLRaw.batteries_v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Sqlite">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Sqlite.Core.2.1.1\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Json">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Json.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Configuration.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading">
+      <HintPath>..\packages\System.Threading.4.0.11\lib\netstandard1.3\System.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.1\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Cng">
+      <HintPath>..\packages\System.Security.Cryptography.Cng.4.5.0\lib\netstandard2.0\System.Security.Cryptography.Cng.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>..\packages\BouncyCastle.1.8.2\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-128.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-128%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-16.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-16%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-256.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-256%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-32.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-32%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-512.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-512%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Screen Shot 2018-07-03 at 11.02.13 AM.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Screen Shot 2018-07-03 at 11.02.13 AM.imageset\Screen Shot 2018-07-03 at 11.02.13 AM.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\banner.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\banner.imageset\banner.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\banner.imageset\banner%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\banner.imageset\banner%403x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\current.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\current.imageset\current.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\current.imageset\current%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\current.imageset\current%403x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\exit.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\exit.imageset\exit.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\exit.imageset\exit%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\exit.imageset\exit%403x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\settings.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\settings.imageset\settings.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\settings.imageset\settings%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\settings.imageset\settings%403x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\transaction.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\transaction.imageset\transaction.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\transaction.imageset\transaction%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\transaction.imageset\transaction%403x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\wallet.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\wallet.imageset\wallet.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\wallet.imageset\wallet%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\wallet.imageset\wallet%403x.png" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net47' ">
+    <Reference Include="System.Security" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Neo\" />
+    <Folder Include="Neo\IO\" />
+    <Folder Include="Neo\Implementations\" />
+    <Folder Include="Neo\Cryptography\" />
+    <Folder Include="Neo\Network\" />
+    <Folder Include="Neo\Plugins\" />
+    <Folder Include="Neo\SmartContract\" />
+    <Folder Include="Neo\Wallets\" />
+    <Folder Include="Neo\Core\" />
+    <Folder Include="Neo\Consensus\" />
+    <Folder Include="Cryptography\" />
+    <Folder Include="PortTable\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings" />
+    <None Include="Neo\IO\.DS_Store" />
+    <None Include="Neo\IO\Data\.DS_Store" />
+    <None Include="vm\neo-vm.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="ViewController.cs" />
+    <Compile Include="ViewController.designer.cs">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Neo\UInt160.cs" />
+    <Compile Include="Neo\UInt256.cs" />
+    <Compile Include="Neo\UIntBase.cs" />
+    <Compile Include="Neo\BigDecimal.cs" />
+    <Compile Include="Neo\Fixed8.cs" />
+    <Compile Include="Neo\Helper.cs" />
+    <Compile Include="Neo\Settings.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs" />
+    <Compile Include="Properties\Settings.cs" />
+    <Compile Include="Properties\Strings.Designer.cs" />
+    <Compile Include="AppDelegate.designer.cs">
+      <DependentUpon>AppDelegate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SettingsVC.cs" />
+    <Compile Include="SettingsVC.designer.cs">
+      <DependentUpon>SettingsVC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionVC.cs" />
+    <Compile Include="WalletVC.cs" />
+    <Compile Include="WalletVC.designer.cs">
+      <DependentUpon>WalletVC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionVC.designer.cs">
+      <DependentUpon>TransactionVC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Neo\IO\Caching\Cache.cs" />
+    <Compile Include="Neo\IO\Caching\CloneCache.cs" />
+    <Compile Include="Neo\IO\Caching\DataCache.cs" />
+    <Compile Include="Neo\IO\Caching\FIFOCache.cs" />
+    <Compile Include="Neo\IO\Caching\LRUCache.cs" />
+    <Compile Include="Neo\IO\Caching\MetaDataCache.cs" />
+    <Compile Include="Neo\IO\Caching\ReflectionCache.cs" />
+    <Compile Include="Neo\IO\Caching\ReflectionCacheAttribute.cs" />
+    <Compile Include="Neo\IO\Caching\RelayCache.cs" />
+    <Compile Include="Neo\IO\Caching\TrackState.cs" />
+    <Compile Include="Neo\IO\Data\LevelDB\DB.cs" />
+    <Compile Include="Neo\IO\Data\LevelDB\DbCache.cs" />
+    <Compile Include="Neo\IO\Data\LevelDB\DbMetaDataCache.cs" />
+    <Compile Include="Neo\IO\Data\LevelDB\Helper.cs" />
+    <Compile Include="Neo\IO\Data\LevelDB\Iterator.cs" />
+    <Compile Include="Neo\IO\Data\LevelDB\LevelDBException.cs" />
+    <Compile Include="Neo\IO\Data\LevelDB\Native.cs" />
+    <Compile Include="Neo\IO\Data\LevelDB\NativeRocksDB.cs" />
+    <Compile Include="Neo\IO\Data\LevelDB\Options.cs" />
+    <Compile Include="Neo\IO\Data\LevelDB\ReadOptions.cs" />
+    <Compile Include="Neo\IO\Data\LevelDB\Slice.cs" />
+    <Compile Include="Neo\IO\Data\LevelDB\SliceBuilder.cs" />
+    <Compile Include="Neo\IO\Data\LevelDB\Snapshot.cs" />
+    <Compile Include="Neo\IO\Data\LevelDB\WriteBatch.cs" />
+    <Compile Include="Neo\IO\Data\LevelDB\WriteOptions.cs" />
+    <Compile Include="Neo\IO\Helper.cs" />
+    <Compile Include="Neo\IO\ICloneable.cs" />
+    <Compile Include="Neo\IO\ISerializable.cs" />
+    <Compile Include="Neo\IO\Json\JArray.cs" />
+    <Compile Include="Neo\IO\Json\JBoolean.cs" />
+    <Compile Include="Neo\IO\Json\JNumber.cs" />
+    <Compile Include="Neo\IO\Json\JObject.cs" />
+    <Compile Include="Neo\IO\Json\JString.cs" />
+    <Compile Include="Neo\IO\Wrappers\ByteWrapper.cs" />
+    <Compile Include="Neo\IO\Wrappers\SerializableWrapper.cs" />
+    <Compile Include="Neo\Implementations\Blockchains\LevelDB\ApplicationExecutedEventArgs.cs" />
+    <Compile Include="Neo\Implementations\Blockchains\LevelDB\ApplicationExecutionResult.cs" />
+    <Compile Include="Neo\Implementations\Blockchains\LevelDB\DataEntryPrefix.cs" />
+    <Compile Include="Neo\Implementations\Blockchains\LevelDB\LevelDBBlockchain.cs" />
+    <Compile Include="Neo\Implementations\Wallets\EntityFramework\Account.cs" />
+    <Compile Include="Neo\Implementations\Wallets\EntityFramework\Address.cs" />
+    <Compile Include="Neo\Implementations\Wallets\EntityFramework\Contract.cs" />
+    <Compile Include="Neo\Implementations\Wallets\EntityFramework\Key.cs" />
+    <Compile Include="Neo\Implementations\Wallets\EntityFramework\UserWallet.cs" />
+    <Compile Include="Neo\Implementations\Wallets\EntityFramework\UserWalletAccount.cs" />
+    <Compile Include="Neo\Implementations\Wallets\EntityFramework\VerificationContract.cs" />
+    <Compile Include="Neo\Implementations\Wallets\EntityFramework\WalletDataContext.cs" />
+    <Compile Include="Neo\Implementations\Wallets\NEP6\NEP6Account.cs" />
+    <Compile Include="Neo\Implementations\Wallets\NEP6\NEP6Contract.cs" />
+    <Compile Include="Neo\Implementations\Wallets\NEP6\NEP6Wallet.cs" />
+    <Compile Include="Neo\Implementations\Wallets\NEP6\ScryptParameters.cs" />
+    <Compile Include="Neo\Implementations\Wallets\NEP6\WalletLocker.cs" />
+    <Compile Include="Neo\Cryptography\Base58.cs" />
+    <Compile Include="Neo\Cryptography\BloomFilter.cs" />
+    <Compile Include="Neo\Cryptography\Crypto.cs" />
+    <Compile Include="Neo\Cryptography\ECC\ECCurve.cs" />
+    <Compile Include="Neo\Cryptography\ECC\ECDsa.cs" />
+    <Compile Include="Neo\Cryptography\ECC\ECFieldElement.cs" />
+    <Compile Include="Neo\Cryptography\ECC\ECPoint.cs" />
+    <Compile Include="Neo\Cryptography\Helper.cs" />
+    <Compile Include="Neo\Cryptography\MerkleTree.cs" />
+    <Compile Include="Neo\Cryptography\MerkleTreeNode.cs" />
+    <Compile Include="Neo\Cryptography\Murmur3.cs" />
+    <Compile Include="Neo\Cryptography\ProtectedMemoryContext.cs" />
+    <Compile Include="Neo\Cryptography\RIPEMD160Managed.cs" />
+    <Compile Include="Neo\Cryptography\SCrypt.cs" />
+    <Compile Include="Neo\Network\IInventory.cs" />
+    <Compile Include="Neo\Network\InventoryReceivingEventArgs.cs" />
+    <Compile Include="Neo\Network\InventoryType.cs" />
+    <Compile Include="Neo\Network\LocalNode.cs" />
+    <Compile Include="Neo\Network\Message.cs" />
+    <Compile Include="Neo\Network\Payloads\AddrPayload.cs" />
+    <Compile Include="Neo\Network\Payloads\ConsensusPayload.cs" />
+    <Compile Include="Neo\Network\Payloads\FilterAddPayload.cs" />
+    <Compile Include="Neo\Network\Payloads\FilterLoadPayload.cs" />
+    <Compile Include="Neo\Network\Payloads\GetBlocksPayload.cs" />
+    <Compile Include="Neo\Network\Payloads\HeadersPayload.cs" />
+    <Compile Include="Neo\Network\Payloads\InvPayload.cs" />
+    <Compile Include="Neo\Network\Payloads\MerkleBlockPayload.cs" />
+    <Compile Include="Neo\Network\Payloads\NetworkAddressWithTime.cs" />
+    <Compile Include="Neo\Network\Payloads\VersionPayload.cs" />
+    <Compile Include="Neo\Network\RemoteNode.cs" />
+    <Compile Include="Neo\Network\RPC\RpcException.cs" />
+    <Compile Include="Neo\Network\RPC\RpcServer.cs" />
+    <Compile Include="Neo\Network\TcpRemoteNode.cs" />
+    <Compile Include="Neo\Network\UPnP.cs" />
+    <Compile Include="Neo\Network\WebSocketRemoteNode.cs" />
+    <Compile Include="Neo\Plugins\Plugin.cs" />
+    <Compile Include="Neo\Plugins\PolicyPlugin.cs" />
+    <Compile Include="Neo\Plugins\RpcPlugin.cs" />
+    <Compile Include="Neo\SmartContract\ApplicationEngine.cs" />
+    <Compile Include="Neo\SmartContract\CachedScriptTable.cs" />
+    <Compile Include="Neo\SmartContract\Contract.cs" />
+    <Compile Include="Neo\SmartContract\ContractParameter.cs" />
+    <Compile Include="Neo\SmartContract\ContractParametersContext.cs" />
+    <Compile Include="Neo\SmartContract\ContractParameterType.cs" />
+    <Compile Include="Neo\SmartContract\Enumerators\ArrayWrapper.cs" />
+    <Compile Include="Neo\SmartContract\Enumerators\ConcatenatedEnumerator.cs" />
+    <Compile Include="Neo\SmartContract\Enumerators\IEnumerator.cs" />
+    <Compile Include="Neo\SmartContract\Enumerators\IteratorKeysWrapper.cs" />
+    <Compile Include="Neo\SmartContract\Enumerators\IteratorValuesWrapper.cs" />
+    <Compile Include="Neo\SmartContract\Iterators\IIterator.cs" />
+    <Compile Include="Neo\SmartContract\Iterators\MapWrapper.cs" />
+    <Compile Include="Neo\SmartContract\Iterators\StorageIterator.cs" />
+    <Compile Include="Neo\SmartContract\LogEventArgs.cs" />
+    <Compile Include="Neo\SmartContract\NotifyEventArgs.cs" />
+    <Compile Include="Neo\SmartContract\StackItemType.cs" />
+    <Compile Include="Neo\SmartContract\StateMachine.cs" />
+    <Compile Include="Neo\SmartContract\StateReader.cs" />
+    <Compile Include="Neo\SmartContract\StorageContext.cs" />
+    <Compile Include="Neo\SmartContract\TriggerType.cs" />
+    <Compile Include="Neo\Wallets\AssetDescriptor.cs" />
+    <Compile Include="Neo\Wallets\BalanceEventArgs.cs" />
+    <Compile Include="Neo\Wallets\Coin.cs" />
+    <Compile Include="Neo\Wallets\DataEntryPrefix.cs" />
+    <Compile Include="Neo\Wallets\KeyPair.cs" />
+    <Compile Include="Neo\Wallets\TransferOutput.cs" />
+    <Compile Include="Neo\Wallets\Wallet.cs" />
+    <Compile Include="Neo\Wallets\WalletAccount.cs" />
+    <Compile Include="Neo\Wallets\WalletIndexer.cs" />
+    <Compile Include="Neo\Core\AccountState.cs" />
+    <Compile Include="Neo\Core\AssetState.cs" />
+    <Compile Include="Neo\Core\AssetType.cs" />
+    <Compile Include="Neo\Core\Block.cs" />
+    <Compile Include="Neo\Core\BlockBase.cs" />
+    <Compile Include="Neo\Core\Blockchain.cs" />
+    <Compile Include="Neo\Core\ClaimTransaction.cs" />
+    <Compile Include="Neo\Core\CoinReference.cs" />
+    <Compile Include="Neo\Core\CoinState.cs" />
+    <Compile Include="Neo\Core\ContractPropertyState.cs" />
+    <Compile Include="Neo\Core\ContractState.cs" />
+    <Compile Include="Neo\Core\ContractTransaction.cs" />
+    <Compile Include="Neo\Core\EnrollmentTransaction.cs" />
+    <Compile Include="Neo\Core\Header.cs" />
+    <Compile Include="Neo\Core\Helper.cs" />
+    <Compile Include="Neo\Core\InvocationTransaction.cs" />
+    <Compile Include="Neo\Core\IssueTransaction.cs" />
+    <Compile Include="Neo\Core\IVerifiable.cs" />
+    <Compile Include="Neo\Core\MinerTransaction.cs" />
+    <Compile Include="Neo\Core\PublishTransaction.cs" />
+    <Compile Include="Neo\Core\RegisterTransaction.cs" />
+    <Compile Include="Neo\Core\SpentCoin.cs" />
+    <Compile Include="Neo\Core\SpentCoinState.cs" />
+    <Compile Include="Neo\Core\StateBase.cs" />
+    <Compile Include="Neo\Core\StateDescriptor.cs" />
+    <Compile Include="Neo\Core\StateTransaction.cs" />
+    <Compile Include="Neo\Core\StateType.cs" />
+    <Compile Include="Neo\Core\StorageItem.cs" />
+    <Compile Include="Neo\Core\StorageKey.cs" />
+    <Compile Include="Neo\Core\Transaction.cs" />
+    <Compile Include="Neo\Core\TransactionAttribute.cs" />
+    <Compile Include="Neo\Core\TransactionAttributeUsage.cs" />
+    <Compile Include="Neo\Core\TransactionOutput.cs" />
+    <Compile Include="Neo\Core\TransactionResult.cs" />
+    <Compile Include="Neo\Core\TransactionType.cs" />
+    <Compile Include="Neo\Core\UnspentCoinState.cs" />
+    <Compile Include="Neo\Core\ValidatorsCountState.cs" />
+    <Compile Include="Neo\Core\ValidatorState.cs" />
+    <Compile Include="Neo\Core\Witness.cs" />
+    <Compile Include="Neo\Consensus\ChangeView.cs" />
+    <Compile Include="Neo\Consensus\ConsensusContext.cs" />
+    <Compile Include="Neo\Consensus\ConsensusMessage.cs" />
+    <Compile Include="Neo\Consensus\ConsensusMessageType.cs" />
+    <Compile Include="Neo\Consensus\ConsensusService.cs" />
+    <Compile Include="Neo\Consensus\ConsensusState.cs" />
+    <Compile Include="Neo\Consensus\PrepareRequest.cs" />
+    <Compile Include="Neo\Consensus\PrepareResponse.cs" />
+    <Compile Include="vm\ExecutionContext.cs" />
+    <Compile Include="vm\ExecutionEngine.cs" />
+    <Compile Include="vm\Helper.cs" />
+    <Compile Include="vm\ICrypto.cs" />
+    <Compile Include="vm\IInteropInterface.cs" />
+    <Compile Include="vm\IScriptContainer.cs" />
+    <Compile Include="vm\IScriptTable.cs" />
+    <Compile Include="vm\InteropService.cs" />
+    <Compile Include="vm\OpCode.cs" />
+    <Compile Include="vm\RandomAccessStack.cs" />
+    <Compile Include="vm\ScriptBuilder.cs" />
+    <Compile Include="vm\StackItem.cs" />
+    <Compile Include="vm\VMState.cs" />
+    <Compile Include="vm\Types\Array.cs" />
+    <Compile Include="vm\Types\Boolean.cs" />
+    <Compile Include="vm\Types\ByteArray.cs" />
+    <Compile Include="vm\Types\Integer.cs" />
+    <Compile Include="vm\Types\InteropInterface.cs" />
+    <Compile Include="vm\Types\Map.cs" />
+    <Compile Include="vm\Types\Struct.cs" />
+    <Compile Include="Cryptography\CertificateQueryResult.cs" />
+    <Compile Include="Cryptography\CertificateQueryResultType.cs" />
+    <Compile Include="Cryptography\CertificateQueryService.cs" />
+    <Compile Include="Neo\Cryptography\ECC\test.cs" />
+    <Compile Include="PortTable\PortTable.cs" />
+    <Compile Include="PortTable\PortTableDataSource.cs" />
+    <Compile Include="PortTable\PortTableDelagate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="policy.json" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
+  <Import Project="..\packages\SQLitePCLRaw.lib.e_sqlite3.osx.1.1.11\build\Xamarin.Mac20\SQLitePCLRaw.lib.e_sqlite3.osx.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.osx.1.1.11\build\Xamarin.Mac20\SQLitePCLRaw.lib.e_sqlite3.osx.targets')" />
+</Project>
