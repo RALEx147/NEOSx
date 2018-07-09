@@ -870,14 +870,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="835" height="658"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLT-0H-51X">
+                            <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="36" horizontalPageScroll="10" verticalLineScroll="36" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLT-0H-51X">
                                 <rect key="frame" x="20" y="600" width="241" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="wOi-jU-zsl">
                                     <rect key="frame" x="0.0" y="0.0" width="241" height="38"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="PKq-AX-0MF">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="34" rowSizeStyle="automatic" viewBased="YES" id="PKq-AX-0MF">
                                             <rect key="frame" x="0.0" y="0.0" width="241" height="38"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -941,7 +941,6 @@
                             </button>
                         </subviews>
                         <connections>
-                            <outlet property="cell" destination="MMd-tc-BXi" id="jJ0-op-aSN"/>
                             <outlet property="scroll" destination="XLT-0H-51X" id="XjJ-c8-7YM"/>
                             <outlet property="show" destination="WtG-4p-FQe" id="2PQ-Hw-ezp"/>
                             <outlet property="table" destination="PKq-AX-0MF" id="4LH-DX-GRl"/>
