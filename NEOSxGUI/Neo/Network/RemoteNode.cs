@@ -393,7 +393,6 @@ namespace Neo.Network
 #if !NET47
             //There is a bug in .NET Core 2.0 that blocks async method which returns void.
             await Task.Yield();
-
 #endif
 
             if (!await SendMessageAsync(Message.Create("version", VersionPayload.Create(localNode.Port, localNode.Nonce, localNode.UserAgent))))

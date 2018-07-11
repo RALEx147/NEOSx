@@ -389,6 +389,7 @@ namespace Neo.Network
 
                     tasksDict.Add(connectTask, ipEndPoint.Address);
                     currentlyConnectingIPs.Add(ipEndPoint.Address, connectTask);
+
                 }
             }
             while (!cancellationTokenSource.IsCancellationRequested)
@@ -416,7 +417,9 @@ namespace Neo.Network
                             lock (connectedPeers)
                             {
                                 foreach (RemoteNode node in connectedPeers)
+                                {
                                     node.RequestPeers();
+                                }
                             }
 
                             if (lastSufficientPeersTimestamp < DateTime.UtcNow.AddSeconds(-180))

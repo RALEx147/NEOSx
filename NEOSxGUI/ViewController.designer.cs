@@ -9,169 +9,191 @@ using System.CodeDom.Compiler;
 
 namespace NEOSxGUI
 {
-	[Register ("ViewController")]
-	partial class ViewController
-	{
-		[Outlet]
-		AppKit.NSImageView banner { get; set; }
+    [Register ("ViewController")]
+    partial class ViewController
+    {
+        [Outlet]
+        AppKit.NSImageView banner { get; set; }
 
-		[Outlet]
-		AppKit.NSScrollView bg { get; set; }
+        [Outlet]
+        AppKit.NSScrollView bg { get; set; }
 
-		[Outlet]
-		AppKit.NSScrollView buttonView { get; set; }
+        [Outlet]
+        AppKit.NSScrollView buttonView { get; set; }
 
-		[Outlet]
-		AppKit.NSButton current { get; set; }
+        [Outlet]
+        AppKit.NSButton current { get; set; }
 
-		[Outlet]
-		AppKit.NSTableColumn heightColum { get; set; }
+        [Outlet]
+        AppKit.NSTextField height { get; set; }
 
-		[Outlet]
-		AppKit.NSTableColumn ipColum { get; set; }
+        [Outlet]
+        AppKit.NSTableColumn heightColum { get; set; }
 
-		[Outlet]
-		AppKit.NSTableColumn listenColum { get; set; }
+        [Outlet]
+        AppKit.NSTableColumn ipColum { get; set; }
 
-		[Outlet]
-		AppKit.NSTableColumn portColum { get; set; }
+        [Outlet]
+        AppKit.NSTableColumn listenColum { get; set; }
 
-		[Outlet]
-		AppKit.NSButton settingsButton { get; set; }
+        [Outlet]
+        AppKit.NSTableColumn portColum { get; set; }
 
-		[Outlet]
-		AppKit.NSView settingsController { get; set; }
+        [Outlet]
+        AppKit.NSButton settingsButton { get; set; }
 
-		[Outlet]
-		AppKit.NSView settingsview { get; set; }
+        [Outlet]
+        AppKit.NSView settingsController { get; set; }
 
-		[Outlet]
-		AppKit.NSTableView table { get; set; }
+        [Outlet]
+        AppKit.NSView settingsview { get; set; }
 
-		[Outlet]
-		AppKit.NSButton transactionButton { get; set; }
+        [Outlet]
+        AppKit.NSTableView table { get; set; }
 
-		[Outlet]
-		AppKit.NSView transactionsController { get; set; }
+        [Outlet]
+        AppKit.NSTouchBar touchbar { get; set; }
 
-		[Outlet]
-		AppKit.NSView transview { get; set; }
+        [Outlet]
+        AppKit.NSButton transactionButton { get; set; }
 
-		[Outlet]
-		AppKit.NSButton walletButton { get; set; }
+        [Outlet]
+        AppKit.NSView transactionsController { get; set; }
 
-		[Outlet]
-		AppKit.NSView walletController { get; set; }
+        [Outlet]
+        AppKit.NSView transview { get; set; }
 
-		[Outlet]
-		AppKit.NSView walletview { get; set; }
+        [Outlet]
+        AppKit.NSButton walletButton { get; set; }
 
-		[Action ("button:")]
-		partial void button (Foundation.NSObject sender);
+        [Outlet]
+        AppKit.NSView walletController { get; set; }
 
-		[Action ("exit:")]
-		partial void exit (Foundation.NSObject sender);
+        [Outlet]
+        AppKit.NSView walletview { get; set; }
 
-		[Action ("settings:")]
-		partial void settings (Foundation.NSObject sender);
+        [Action ("button:")]
+        partial void button (Foundation.NSObject sender);
 
-		[Action ("transaction:")]
-		partial void transaction (Foundation.NSObject sender);
+        [Action ("exit:")]
+        partial void exit (Foundation.NSObject sender);
 
-		[Action ("wallet:")]
-		partial void wallet (Foundation.NSObject sender);
-		
-		void ReleaseDesignerOutlets ()
-		{
-			if (banner != null) {
-				banner.Dispose ();
-				banner = null;
-			}
+        [Action ("settings:")]
+        partial void settings (Foundation.NSObject sender);
 
-			if (bg != null) {
-				bg.Dispose ();
-				bg = null;
-			}
+        [Action ("transaction:")]
+        partial void transaction (Foundation.NSObject sender);
 
-			if (buttonView != null) {
-				buttonView.Dispose ();
-				buttonView = null;
-			}
+        [Action ("transTouch:")]
+        partial void transTouch (Foundation.NSObject sender);
 
-			if (current != null) {
-				current.Dispose ();
-				current = null;
-			}
+        [Action ("wallet:")]
+        partial void wallet (Foundation.NSObject sender);
 
-			if (heightColum != null) {
-				heightColum.Dispose ();
-				heightColum = null;
-			}
+        [Action ("walletTouch:")]
+        partial void walletTouch (Foundation.NSObject sender);
+        
+        void ReleaseDesignerOutlets ()
+        {
+            if (banner != null) {
+                banner.Dispose ();
+                banner = null;
+            }
 
-			if (ipColum != null) {
-				ipColum.Dispose ();
-				ipColum = null;
-			}
+            if (bg != null) {
+                bg.Dispose ();
+                bg = null;
+            }
 
-			if (listenColum != null) {
-				listenColum.Dispose ();
-				listenColum = null;
-			}
+            if (buttonView != null) {
+                buttonView.Dispose ();
+                buttonView = null;
+            }
 
-			if (portColum != null) {
-				portColum.Dispose ();
-				portColum = null;
-			}
+            if (current != null) {
+                current.Dispose ();
+                current = null;
+            }
 
-			if (settingsButton != null) {
-				settingsButton.Dispose ();
-				settingsButton = null;
-			}
+            if (heightColum != null) {
+                heightColum.Dispose ();
+                heightColum = null;
+            }
 
-			if (settingsController != null) {
-				settingsController.Dispose ();
-				settingsController = null;
-			}
+            if (ipColum != null) {
+                ipColum.Dispose ();
+                ipColum = null;
+            }
 
-			if (table != null) {
-				table.Dispose ();
-				table = null;
-			}
+            if (listenColum != null) {
+                listenColum.Dispose ();
+                listenColum = null;
+            }
 
-			if (transactionButton != null) {
-				transactionButton.Dispose ();
-				transactionButton = null;
-			}
+            if (portColum != null) {
+                portColum.Dispose ();
+                portColum = null;
+            }
 
-			if (transactionsController != null) {
-				transactionsController.Dispose ();
-				transactionsController = null;
-			}
+            if (settingsButton != null) {
+                settingsButton.Dispose ();
+                settingsButton = null;
+            }
 
-			if (walletButton != null) {
-				walletButton.Dispose ();
-				walletButton = null;
-			}
+            if (settingsController != null) {
+                settingsController.Dispose ();
+                settingsController = null;
+            }
 
-			if (walletController != null) {
-				walletController.Dispose ();
-				walletController = null;
-			}
+            if (settingsview != null) {
+                settingsview.Dispose ();
+                settingsview = null;
+            }
 
-			if (settingsview != null) {
-				settingsview.Dispose ();
-				settingsview = null;
-			}
+            if (table != null) {
+                table.Dispose ();
+                table = null;
+            }
 
-			if (transview != null) {
-				transview.Dispose ();
-				transview = null;
-			}
+            if (transactionButton != null) {
+                transactionButton.Dispose ();
+                transactionButton = null;
+            }
 
-			if (walletview != null) {
-				walletview.Dispose ();
-				walletview = null;
-			}
-		}
-	}
+            if (transactionsController != null) {
+                transactionsController.Dispose ();
+                transactionsController = null;
+            }
+
+            if (transview != null) {
+                transview.Dispose ();
+                transview = null;
+            }
+
+            if (walletButton != null) {
+                walletButton.Dispose ();
+                walletButton = null;
+            }
+
+            if (walletController != null) {
+                walletController.Dispose ();
+                walletController = null;
+            }
+
+            if (walletview != null) {
+                walletview.Dispose ();
+                walletview = null;
+            }
+
+            if (touchbar != null) {
+                touchbar.Dispose ();
+                touchbar = null;
+            }
+
+            if (height != null) {
+                height.Dispose ();
+                height = null;
+            }
+        }
+    }
 }

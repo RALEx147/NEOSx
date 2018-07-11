@@ -2,6 +2,9 @@
 using System;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Numerics;
+
+using System.Buffers;
 
 namespace Neo.Cryptography
 {
@@ -39,7 +42,6 @@ namespace Neo.Cryptography
         public bool VerifySignature(byte[] message, byte[] signature, byte[] pubkey)
         {
 
-
             if (pubkey.Length == 33 && (pubkey[0] == 0x02 || pubkey[0] == 0x03))
             {
                 try
@@ -61,8 +63,8 @@ namespace Neo.Cryptography
             }
 
             //testing------------------------------------------------------------------------------------------------------------------
-           
-            Oid nistp256 = new Oid("1.2.840.10045.3.1.7");
+
+            //Oid nistp256 = new Oid("1.2.840.10045.3.1.7");
 
             //var qq = new ECPoint();
             //qq.X = pubkey.Take(32).ToArray();
@@ -87,14 +89,45 @@ namespace Neo.Cryptography
             //-------------------------------------------------------------------------------------------------------------------------
 
 
-            //const int ECDSA_PUBLIC_P256_MAGIC = 0x31534345;
-            //pubkey = BitConverter.GetBytes(ECDSA_PUBLIC_P256_MAGIC).Concat(BitConverter.GetBytes(32)).Concat(pubkey).ToArray();
 
-            //using (CngKey key = CngKey.Import(pubkey, CngKeyBlobFormat.EccPublicBlob)) 
-            //using (System.Security.Cryptography.ECDsaCng ecdsa = new ECDsaCng(key)) 
-            //{
-            //    return ecdsa.VerifyData(message, signature, HashAlgorithmName.SHA256);
-            //}
+
+
+
+            var ec = ECC.ECCurve.Secp256r1;
+            var ecP = ECC.ECPoint.DecodePoint(pubkey, ec);
+
+            var x = new ECC.ECFieldElement(new BigInteger(pubkey.Take(32).ToArray()),ec);
+            var y = new ECC.ECFieldElement(new BigInteger(pubkey.Skip(32).ToArray()),ec);
+            var ecpoint = new ECC.ECPoint(x, y, ec);
+
+            var edsca = new ECC.ECDsa(ecpoint);
+
+
+
+            var rr = new BigInteger(pubkey);
+            var ss = new BigInteger(signature);
+
+            var l = edsca.VerifySignature(message, ss, rr);
+            Console.WriteLine(l);
+            return l;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             using (var ecdsa = ECDsa.Create(new ECParameters
             {

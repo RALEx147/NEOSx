@@ -4,13 +4,114 @@ using System;
 
 using Foundation;
 using AppKit;
-
+using Neo.Implementations.Wallets.NEP6;
+using Neo.Wallets;
+using System.Threading.Tasks;
 namespace NEOSxGUI
 {
-	public partial class WalletVC : NSView
-	{
-		public WalletVC (IntPtr handle) : base (handle)
-		{
-		}
-	}
+    public partial class WalletVC : NSView
+    {
+        public WalletVC(IntPtr handle) : base(handle)
+        {
+        }
+        public override void ViewDidMoveToSuperview()
+        {
+            base.ViewDidMoveToSuperview();
+
+
+
+
+            DataSource.addresses.Add(new AddressTable("AcvoFQ2oZomVD89zoeWVPauraSuU7w5LiQ"));
+            DataSource.addresses.Add(new AddressTable("AH4wdCHqkQJaQnm5MBmgZwEc8tmGXtTfz7"));
+            DataSource.addresses.Add(new AddressTable("AKSY1L33EuE63Hzcg3XPRHqZgDdDLvyj3P"));
+            DataSource.addresses.Add(new AddressTable("AJMDSEvhCm7XgvTAdseE6SKhuGfffmvLxB"));
+            table.DataSource = DataSource;
+            table.Delegate = new AddressTableDelegate(this, DataSource);
+            table.ReloadData();
+        }
+
+        public void update(){
+            table.ReloadData();
+            var init_int = DataSource.addresses.Count;
+            for (int i = 0; i < init_int; i++)
+            {
+                var a = DataSource.addresses[i];
+                if (a.top == true){
+                    DataSource.addresses.Remove(DataSource.addresses[i]);
+                    DataSource.addresses.Insert(0, a);
+                }
+            }
+            table.ReloadData();
+            foreach (AddressTable a in DataSource.addresses)
+            {
+                a.top = false;
+            }
+        }
+
+
+
+
+
+
+
+        partial void walletOpen(NSObject sender)
+        {
+            //start loading bar
+
+            var t = Task.Run(() =>
+            {
+                NEP6Wallet w = new NEP6Wallet("testnet.json");
+                w.Unlock("qwerasdfqwer");
+                return w;
+
+            });
+            t.ContinueWith((w) => {
+                var v = w.Result.GetAccounts();
+                foreach (WalletAccount s in v)
+                {
+                    Console.WriteLine(s.Address);
+                }
+                //current wallet is w
+                //setup ui with w address
+                //stop loading bar
+                //close poopup
+                BeginInvokeOnMainThread(() =>
+                {
+                    openWallet.Title = "lmao";
+                });
+            }
+            );
+
+        }
+
+
+
+        private bool extended = false;
+        private AddressTableDataSource DataSource = new AddressTableDataSource();
+        partial void button(NSObject sender)
+        {
+            table.ReloadData();
+
+            if (extended)
+
+            {
+                
+                
+                scroll.SetFrameSize(new CoreGraphics.CGSize(scroll.Frame.Width, scroll.Frame.Height - 180));
+                scroll.SetFrameOrigin(new CoreGraphics.CGPoint(scroll.Frame.X, scroll.Frame.Y + 180));
+            }
+            else
+            {
+                scroll.SetFrameSize(new CoreGraphics.CGSize(scroll.Frame.Width, scroll.Frame.Height + 180));
+                scroll.SetFrameOrigin(new CoreGraphics.CGPoint(scroll.Frame.X, scroll.Frame.Y - 180));
+            }
+            extended = !extended;
+            foreach (AddressTable a in DataSource.addresses)
+            {
+                a.extended = !a.extended;
+            }
+        }
+
+
+    }
 }

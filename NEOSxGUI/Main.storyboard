@@ -2,8 +2,11 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="14214"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14295.6"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="the Touch Bar" minToolsVersion="8.1" minSystemVersion="10.12.2" requiredIntegratedClassName="NSTouchBar"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -651,12 +654,12 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
+                <windowController id="B8D-0N-5wS" customClass="windowController" sceneMemberID="viewController">
                     <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hasShadow="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="384" y="263" width="900" height="700"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
                         <value key="minSize" type="size" width="900" height="700"/>
                         <value key="maxSize" type="size" width="900" height="700"/>
                         <toolbar key="toolbar" implicitIdentifier="64103DD1-DF07-4745-8C26-075CD2A13338" autosavesConfiguration="NO" showsBaselineSeparator="NO" displayMode="iconAndLabel" sizeMode="regular" id="DK0-eY-Hp5">
@@ -700,10 +703,10 @@
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10">
                                                 <size key="itemSize" width="50" height="100"/>
                                             </collectionViewFlowLayout>
-                                            <color key="primaryBackgroundColor" red="0.96078431372549022" green="0.96862745098039216" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="primaryBackgroundColor" name="bg"/>
                                         </collectionView>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.96078431372549022" green="0.96862745098039216" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" name="LeftToolbar"/>
                                 </clipView>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="65" id="IvU-Ot-OHn"/>
@@ -729,10 +732,10 @@
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="PEP-0q-RNJ">
                                                 <size key="itemSize" width="50" height="50"/>
                                             </collectionViewFlowLayout>
-                                            <color key="primaryBackgroundColor" red="0.9882352941176471" green="0.9882352941176471" blue="0.9882352941176471" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="primaryBackgroundColor" name="LeftToolbar"/>
                                         </collectionView>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.98039215686274506" green="0.9882352941176471" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" name="bg"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="1ve-Ps-dH3">
                                     <rect key="frame" x="-100" y="-100" width="233" height="15"/>
@@ -837,11 +840,62 @@
                             <constraint firstItem="Jaq-WW-YaO" firstAttribute="leading" secondItem="w86-Bx-I4h" secondAttribute="trailing" id="xZK-IJ-WpW"/>
                         </constraints>
                     </view>
+                    <touchBar key="touchBar" id="qel-TO-Pcv">
+                        <touchBarItems>
+                            <touchBarItem id="359-Uu-K8q">
+                                <viewController key="viewController" id="Bls-Va-xpZ">
+                                    <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EB9-gV-Ulh">
+                                        <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" bezelStyle="rounded" image="walletTouch" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Jc4-X5-kXx">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="walletTouch:" target="XfG-lQ-9wD" id="eOU-4E-7gq"/>
+                                        </connections>
+                                    </button>
+                                </viewController>
+                                <size key="designTimeSize" width="72" height="30"/>
+                            </touchBarItem>
+                            <touchBarItem id="nr4-Eb-PnO">
+                                <viewController key="viewController" id="tpV-Be-gHl">
+                                    <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AfN-rg-DIj">
+                                        <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" bezelStyle="rounded" image="transTouch" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uAg-dx-kIl">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="transTouch:" target="XfG-lQ-9wD" id="h2f-ig-LWO"/>
+                                        </connections>
+                                    </button>
+                                </viewController>
+                                <size key="designTimeSize" width="72" height="30"/>
+                            </touchBarItem>
+                            <touchBarItem id="k1w-4R-ARm">
+                                <viewController key="viewController" id="u2h-KB-E5b">
+                                    <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BIO-rP-B8v">
+                                        <rect key="frame" x="0.0" y="0.0" width="42" height="19"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="0tk-Ip-r6h">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </viewController>
+                                <size key="designTimeSize" width="38" height="19"/>
+                            </touchBarItem>
+                        </touchBarItems>
+                    </touchBar>
                     <connections>
                         <outlet property="banner" destination="gd7-pz-yao" id="ODz-em-hZg"/>
                         <outlet property="bg" destination="Jaq-WW-YaO" id="H8m-er-KGH"/>
                         <outlet property="buttonView" destination="w86-Bx-I4h" id="L4L-Xh-FDa"/>
                         <outlet property="current" destination="Ea3-Dq-CpD" id="o0G-qt-uQP"/>
+                        <outlet property="height" destination="BIO-rP-B8v" id="ZJl-ae-CgF"/>
                         <outlet property="heightColum" destination="3kM-Mt-jXt" id="CdO-rv-7L1"/>
                         <outlet property="ipColum" destination="cHE-Hu-aNz" id="acT-XE-yYH"/>
                         <outlet property="listenColum" destination="afR-1G-LzV" id="O5W-P9-IQi"/>
@@ -850,6 +904,7 @@
                         <outlet property="settingsController" destination="upM-6M-fz9" id="aVf-Al-Zli"/>
                         <outlet property="settingsview" destination="upM-6M-fz9" id="jQ7-ik-6lC"/>
                         <outlet property="table" destination="Npb-bv-xat" id="PlD-5Y-FaU"/>
+                        <outlet property="touchbar" destination="qel-TO-Pcv" id="MAx-Ck-JfK"/>
                         <outlet property="transactionButton" destination="W5b-ui-pt9" id="lyt-7F-gDT"/>
                         <outlet property="transactionsController" destination="Y8g-zk-0Gv" id="XCP-2B-KvL"/>
                         <outlet property="transview" destination="Y8g-zk-0Gv" id="7Q3-oh-IhH"/>
@@ -859,6 +914,7 @@
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="IYx-wo-YIr"/>
             </objects>
             <point key="canvasLocation" x="260" y="441"/>
         </scene>
@@ -870,27 +926,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="835" height="658"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="36" horizontalPageScroll="10" verticalLineScroll="36" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLT-0H-51X">
-                                <rect key="frame" x="20" y="600" width="241" height="38"/>
+                            <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="36" horizontalPageScroll="10" verticalLineScroll="36" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLT-0H-51X" customClass="noScrollView">
+                                <rect key="frame" x="20" y="603" width="415" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="wOi-jU-zsl">
-                                    <rect key="frame" x="0.0" y="0.0" width="241" height="38"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="415" height="40"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="34" rowSizeStyle="automatic" viewBased="YES" id="PKq-AX-0MF">
-                                            <rect key="frame" x="0.0" y="0.0" width="241" height="38"/>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="34" rowSizeStyle="automatic" viewBased="YES" id="PKq-AX-0MF">
+                                            <rect key="frame" x="0.0" y="0.0" width="415" height="40"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="238" minWidth="40" maxWidth="1000" id="zYo-w1-XN3">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                <tableColumn width="412" minWidth="40" maxWidth="1000" id="zYo-w1-XN3">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="address">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
-                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="FaC-r4-rMx">
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" placeholderString="Address" id="FaC-r4-rMx">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -898,19 +954,8 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="MMd-tc-BXi">
-                                                            <rect key="frame" x="1" y="1" width="238" height="34"/>
+                                                            <rect key="frame" x="1" y="1" width="412" height="34"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cih-Iz-wJm">
-                                                                    <rect key="frame" x="0.0" y="3" width="238" height="31"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Table View Cell" id="yK1-YR-qfF">
-                                                                        <font key="font" metaFont="systemBold" size="28"/>
-                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
-                                                            </subviews>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
@@ -920,18 +965,18 @@
                                     <nil key="backgroundColor"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="1fI-wS-qDR">
-                                    <rect key="frame" x="0.0" y="119" width="188" height="16"/>
+                                    <rect key="frame" x="-100" y="-100" width="188" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="lHl-xj-NAx">
-                                    <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                    <rect key="frame" x="-100" y="-100" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WtG-4p-FQe">
-                                <rect key="frame" x="293" y="630" width="81" height="32"/>
+                                <rect key="frame" x="443" y="606" width="81" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="D6X-aS-e83">
+                                <buttonCell key="cell" type="square" title="Button" bezelStyle="shadowlessSquare" imagePosition="left" borderStyle="border" inset="2" id="D6X-aS-e83">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -939,8 +984,20 @@
                                     <action selector="button:" target="VFP-Ae-YMw" id="v1q-P0-bdA"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v6c-QT-1Z7">
+                                <rect key="frame" x="483" y="362" width="81" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CAr-4m-tZ0">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="walletOpen:" target="VFP-Ae-YMw" id="ZOz-Ta-JLC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <connections>
+                            <outlet property="openWallet" destination="v6c-QT-1Z7" id="IK4-ZN-5YY"/>
                             <outlet property="scroll" destination="XLT-0H-51X" id="XjJ-c8-7YM"/>
                             <outlet property="show" destination="WtG-4p-FQe" id="2PQ-Hw-ezp"/>
                             <outlet property="table" destination="PKq-AX-0MF" id="4LH-DX-GRl"/>
@@ -1175,7 +1232,7 @@
                 </viewController>
                 <customObject id="XGW-Xw-bu6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="261" y="1267"/>
+            <point key="canvasLocation" x="260.5" y="1267"/>
         </scene>
     </scenes>
     <resources>
@@ -1183,7 +1240,15 @@
         <image name="current" width="8" height="7.5"/>
         <image name="exit" width="26" height="27.5"/>
         <image name="settings" width="26.5" height="24"/>
+        <image name="transTouch" width="111.5" height="111.5"/>
         <image name="transaction" width="38" height="34.5"/>
         <image name="wallet" width="36.5" height="29"/>
+        <image name="walletTouch" width="118.5" height="118.25"/>
+        <namedColor name="LeftToolbar">
+            <color red="0.96100002527236938" green="0.96899998188018799" blue="0.96100002527236938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="bg">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

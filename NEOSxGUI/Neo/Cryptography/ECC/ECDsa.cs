@@ -4,9 +4,6 @@ using System.Numerics;
 using System.Security.Cryptography;
 
 using System.Buffers;
-using System.IO;
-using System.Security.Cryptography;
-
 namespace Neo.Cryptography.ECC
 {
     /// <summary>
@@ -132,5 +129,8 @@ namespace Neo.Cryptography.ECC
             BigInteger v = point.X.Value.Mod(curve.N);
             return v.Equals(r);
        }
+
+
+
     }
 }

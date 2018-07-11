@@ -1,39 +1,45 @@
 ﻿using System;
 using AppKit;
 using Foundation;
-
-
+using Neo.Network;
+using System.Threading;
+using System.Timers;
 namespace NEOSxGUI
 {
 
     public partial class ViewController : NSViewController
     {
-
-
+        
+        public override NSTouchBar TouchBar => touchbar;
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
         }
-
+        static System.Timers.Timer timer = new System.Timers.Timer();
         public override void ViewWillAppear()
         {
             base.ViewWillAppear();
-            ////View.Window.BackgroundColor = NSColor.Red;
-            //var shadowPath = UIBezierPath(rect: view.bounds)
-
-            //view.layer.masksToBounds = false
-            //view.layer.shadowColor = UIColor.black.cgColor
-            //view.layer.shadowOffset = CGSize(width: 0.0, height: 5.0)
-            //view.layer.shadowOpacity = 0.5
-            //view.layer.shadowPath = shadowPath.cgPath
-
-            //settingsview.RemoveFromSuperview();
             walletview.RemoveFromSuperview();
             transview.RemoveFromSuperview();
 
             addShadowBanner();
             addShadowbg();
+
+
+            timer = new System.Timers.Timer(1000);
+            timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
+            timer.Enabled = true;
+        }
+
+        private void timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            BeginInvokeOnMainThread(() =>
+            {
+                height.StringValue = MainClass.LocalNode.GetRemoteNodes().Length.ToString();
+
+            });
+
 
         }
 
@@ -86,7 +92,16 @@ namespace NEOSxGUI
 
 
 
+        partial void transTouch(NSObject sender)
+        {
+            toTransView();
+        }
 
+        partial void walletTouch(NSObject sender)
+        {
+            toWalletView();
+
+        }
 
 
 
@@ -95,63 +110,36 @@ namespace NEOSxGUI
             NSApplication.SharedApplication.Terminate(sender);
         }
 
-        partial void settings(NSObject sender)
-        {
-            
+        partial void settings(NSObject sender){toSettingsView();}
+        private void toSettingsView(){
             current.AlphaValue = 0;
-
             View.AddSubview(transview);
             settingsview.RemoveFromSuperview();
             walletview.RemoveFromSuperview();
-
             settingsview.AlphaValue = 1;
             current.SetFrameOrigin(new CoreGraphics.CGPoint(x: 29, y: 58));
-
-            //fucking animations are so fucking hard on mac os compared to ios
-            //shitty fucking xamarin.mac framework
-
-            //NSAnimationContext.RunAnimation((NSAnimationContext obj) =>
-            //{
-            //    obj.Duration = 1;
-            //    current.Animator = 0;
-
-            //}, null);
-            //var aa = new CABasicAnimation();
-            //aa.BeginTime = 1.0;
-            //aa.To = new NSNumber(1.0);
-            //aa.Duration = 0.5;
-            //aa.KeyPath = "opacity";
-            //current.Layer.AddAnimation(aa, "fadeIn");
             current.AlphaValue = 1;
-
         }
 
-        partial void transaction(NSObject sender)
-        {
-            
+        partial void transaction(NSObject sender){toTransView();}
+        private void toTransView(){
             View.AddSubview(walletview);
             transview.RemoveFromSuperview();
             settingsview.RemoveFromSuperview();
-
             current.AlphaValue = 0;
             current.SetFrameOrigin(new CoreGraphics.CGPoint(x: 29, y: 541));
             current.AlphaValue = 1;
         }
-        partial void wallet(NSObject sender)
-        {
 
+        partial void wallet(NSObject sender){toWalletView();}
+        private void toWalletView(){
             transview.RemoveFromSuperview();
             walletview.RemoveFromSuperview();
             View.AddSubview(settingsview);
-
-
-
             current.AlphaValue = 0;
             current.SetFrameOrigin(new CoreGraphics.CGPoint(x: 29, y: 600));
             current.AlphaValue = 1;
-
         }
-
 
 
 
@@ -166,9 +154,7 @@ namespace NEOSxGUI
         //    //Console.WriteLine(Blockchain.Default.GetType());
         //    //Console.WriteLine(LocalNode.GetRemoteNodes());
 
-            //NEP6Wallet w = new NEP6Wallet("test.json");
-        //    //w.Unlock("1");
-        //    //var account = w.GetAccounts();
+
         //    //foreach (var item in account)
         //    //{
         //    //    Console.WriteLine($"address: {item.Address}");
@@ -185,6 +171,21 @@ namespace NEOSxGUI
 
 
 
+            //fucking animations are so fucking hard on mac os compared to ios
+        //shitty fucking xamarin.mac framework
+
+        //NSAnimationContext.RunAnimation((NSAnimationContext obj) =>
+        //{
+        //    obj.Duration = 1;
+        //    current.Animator = 0;
+
+        //}, null);
+        //var aa = new CABasicAnimation();
+        //aa.BeginTime = 1.0;
+        //aa.To = new NSNumber(1.0);
+        //aa.Duration = 0.5;
+        //aa.KeyPath = "opacity";
+        //current.Layer.AddAnimation(aa, "fadeIn");
 
     }
 }

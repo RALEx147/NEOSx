@@ -54,7 +54,9 @@ namespace Neo.Implementations.Wallets.NEP6
             if (nep2key == null) return null;
             if (key == null)
             {
+
                 key = new KeyPair(Wallet.GetPrivateKeyFromNEP2(nep2key, password, wallet.Scrypt.N, wallet.Scrypt.R, wallet.Scrypt.P));
+
             }
             return key;
         }

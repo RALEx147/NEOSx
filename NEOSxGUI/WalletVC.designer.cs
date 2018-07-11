@@ -16,7 +16,13 @@ namespace NEOSxGUI
 		AppKit.NSTableCellView cell { get; set; }
 
 		[Outlet]
+		AppKit.NSButton openWallet { get; set; }
+
+		[Outlet]
 		AppKit.NSScrollView scroll { get; set; }
+
+		[Outlet]
+		AppKit.NSButton select { get; set; }
 
 		[Outlet]
 		AppKit.NSButton show { get; set; }
@@ -26,17 +32,15 @@ namespace NEOSxGUI
 
 		[Action ("button:")]
 		partial void button (Foundation.NSObject sender);
+
+		[Action ("walletOpen:")]
+		partial void walletOpen (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (table != null) {
-				table.Dispose ();
-				table = null;
-			}
-
-			if (show != null) {
-				show.Dispose ();
-				show = null;
+			if (cell != null) {
+				cell.Dispose ();
+				cell = null;
 			}
 
 			if (scroll != null) {
@@ -44,9 +48,24 @@ namespace NEOSxGUI
 				scroll = null;
 			}
 
-			if (cell != null) {
-				cell.Dispose ();
-				cell = null;
+			if (select != null) {
+				select.Dispose ();
+				select = null;
+			}
+
+			if (show != null) {
+				show.Dispose ();
+				show = null;
+			}
+
+			if (table != null) {
+				table.Dispose ();
+				table = null;
+			}
+
+			if (openWallet != null) {
+				openWallet.Dispose ();
+				openWallet = null;
 			}
 		}
 	}

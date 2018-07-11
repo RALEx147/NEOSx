@@ -22,7 +22,10 @@ namespace NEOSxGUI
 
         public override void DidFinishLaunching(NSNotification notification)
         {
-        }
+            NSApplication.SharedApplication.SetAutomaticCustomizeTouchBarMenuItemEnabled(true); // Enable custom touchbar.
+
+            NSApplication.SharedApplication.SetTouchBar(NSApplication.SharedApplication.MainWindow.ContentViewController.TouchBar);
+        }        
 
         public override void WillTerminate(NSNotification notification)
         {
@@ -35,6 +38,7 @@ namespace NEOSxGUI
             Blockchain.PersistCompleted -= mc.Blockchain_PersistCompleted;
             mc.ChangeWallet(null);
         }
+
 
     }
 

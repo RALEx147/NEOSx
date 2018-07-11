@@ -24,6 +24,7 @@ namespace NEOSxGUI
             MainClass mc = new MainClass();
             mc.startBlockChain(args);
 
+
         }
 
 
@@ -78,7 +79,7 @@ namespace NEOSxGUI
             using (LocalNode = new LocalNode())
             {
                 LocalNode.UpnpEnabled = true;
-                //Application.Run(MainForm = new MainForm(xdoc)); HOW THE FUCK DO I DO THIS IN MAC
+                //Application.Run(MainForm = new MainForm(xdoc)); 
 
                 MainClass mc = new MainClass();
                 mc.runBlockChain();
@@ -165,7 +166,7 @@ namespace NEOSxGUI
         private bool check_nep5_balance = false;
         private DateTime persistence_time = DateTime.MinValue;
 
-        public void ChangeWallet(Wallet wallet)
+        public  void ChangeWallet(Wallet wallet)
         {
             if (CurrentWallet != null)
             {
@@ -206,6 +207,7 @@ namespace NEOSxGUI
             balance_changed = true;
             check_nep5_balance = true;
         }
+
 
         protected void CurrentWallet_BalanceChanged(object sender, BalanceEventArgs e)
         {

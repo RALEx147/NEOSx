@@ -366,8 +366,11 @@ namespace Neo.Implementations.Wallets.NEP6
 
         public IDisposable Unlock(string password)
         {
+
             if (!VerifyPassword(password))
                 throw new CryptographicException();
+            
+
             this.password = password;
             return new WalletLocker(this);
         }
@@ -376,11 +379,14 @@ namespace Neo.Implementations.Wallets.NEP6
         {
             lock (accounts)
             {
+
                 NEP6Account account = accounts.Values.FirstOrDefault(p => !p.Decrypted);
                 if (account == null)
                 {
+
                     account = accounts.Values.FirstOrDefault(p => p.HasKey);
                 }
+
                 if (account == null) return true;
                 if (account.Decrypted)
                 {
@@ -388,9 +394,12 @@ namespace Neo.Implementations.Wallets.NEP6
                 }
                 else
                 {
+
                     try
                     {
+
                         account.GetKey(password);
+
                         return true;
                     }
                     catch (FormatException)

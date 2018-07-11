@@ -9,8 +9,15 @@ using System.CodeDom.Compiler;
 
 namespace NEOSxGUI
 {
-    partial class AppDelegate
+    [Register ("windowController")]
+    partial class windowController
     {
+        [Outlet]
+        AppKit.NSTouchBar touchbar { get; set; }
+
+        [Action ("toWallet:")]
+        partial void toWallet (Foundation.NSObject sender);
+
         [Action ("transTouch:")]
         partial void transTouch (Foundation.NSObject sender);
 
@@ -19,6 +26,10 @@ namespace NEOSxGUI
         
         void ReleaseDesignerOutlets ()
         {
+            if (touchbar != null) {
+                touchbar.Dispose ();
+                touchbar = null;
+            }
         }
     }
 }

@@ -9,16 +9,12 @@ using System.CodeDom.Compiler;
 
 namespace NEOSxGUI
 {
-    partial class AppDelegate
-    {
-        [Action ("transTouch:")]
-        partial void transTouch (Foundation.NSObject sender);
-
-        [Action ("walletTouch:")]
-        partial void walletTouch (Foundation.NSObject sender);
-        
-        void ReleaseDesignerOutlets ()
-        {
-        }
-    }
+	[Register ("noScrollView")]
+    partial class noScrollView
+	{
+		
+		void ReleaseDesignerOutlets ()
+		{
+		}
+	}
 }

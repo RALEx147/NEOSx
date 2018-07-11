@@ -7,7 +7,7 @@ using Neo.Core;
 
 using Foundation;
 using AppKit;
-using Neo.Wallets;
+
 namespace NEOSxGUI
 {
 	public partial class TransactionVC : NSView
