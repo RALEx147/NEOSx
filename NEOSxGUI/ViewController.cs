@@ -4,6 +4,26 @@ using Foundation;
 using Neo.Network;
 using System.Threading;
 using System.Timers;
+using Neo.Implementations.Blockchains;
+
+using AppKit;
+using System;
+using Neo.Core;
+using Neo.Implementations.Blockchains.LevelDB;
+using Neo.Network;
+using Properties;
+using Neo.Wallets;
+using System.IO;
+using Neo;
+using System.Threading.Tasks;
+using Neo.Cryptography;
+using Neo.IO;
+using Neo.VM;
+using System.IO.Compression;
+using System.Linq;
+using System.Text.RegularExpressions;
+using Properties;
+
 namespace NEOSxGUI
 {
 
@@ -36,7 +56,14 @@ namespace NEOSxGUI
         {
             BeginInvokeOnMainThread(() =>
             {
-                height.StringValue = MainClass.LocalNode.GetRemoteNodes().Length.ToString();
+                var wh = "0";
+                if (MainClass.CurrentWallet != null){
+                    wh = MainClass.CurrentWallet.WalletHeight.ToString();
+                }
+                var bh = Blockchain.Default.Height.ToString();
+                var hh = Blockchain.Default.HeaderHeight.ToString();
+
+                height.StringValue = wh + " / " + bh + " / " + hh;
 
             });
 

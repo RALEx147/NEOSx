@@ -123,17 +123,20 @@ namespace Neo.Implementations.Blockchains.LevelDB
             {
                 if (!block_cache.ContainsKey(block.Hash))
                 {
+                    Console.WriteLine("1succ");
                     block_cache.Add(block.Hash, block);
                 }
             }
             lock (header_index)
             {
-                
+                Console.WriteLine("2succ");
                 if (block.Index - 1 >= header_index.Count) return false;
+                Console.WriteLine("3succ");
                 if (block.Index == header_index.Count)
                 {
+                    Console.WriteLine("4succ");
                     if (VerifyBlocks && !block.Verify()) return false;
-
+                    Console.WriteLine("5succ");
                     WriteBatch batch = new WriteBatch();
                     OnAddHeader(block.Header, batch);
                     db.Write(WriteOptions.Default, batch);

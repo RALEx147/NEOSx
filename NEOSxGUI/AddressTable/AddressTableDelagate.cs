@@ -41,21 +41,7 @@ namespace NEOSxGUI
                         DataSource.addresses[(int)row].top = true;
                         wvc.update();
                         var btw = sender as NSButton;
-                        var alert = new NSAlert()
-                        {
-                            AlertStyle = NSAlertStyle.Informational,
-                            InformativeText = $"Are you sure you want to delete  This operation cannot be undone.",
-                        };
-                        alert.AddButton("Cancel");
-                        alert.AddButton("Delete");
 
-                        alert.BeginSheetForResponse(wvc.Window, (result) =>
-                            {
-                                if (result == 1001)
-                                {
-                                    Console.WriteLine(click.Tag);
-                                }
-                            });
                     };
                 };
 
