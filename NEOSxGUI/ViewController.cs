@@ -5,12 +5,8 @@ using Neo.Network;
 using System.Threading;
 using System.Timers;
 using Neo.Implementations.Blockchains;
-
-using AppKit;
-using System;
 using Neo.Core;
 using Neo.Implementations.Blockchains.LevelDB;
-using Neo.Network;
 using Properties;
 using Neo.Wallets;
 using System.IO;
@@ -22,7 +18,6 @@ using Neo.VM;
 using System.IO.Compression;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Properties;
 
 namespace NEOSxGUI
 {
@@ -36,6 +31,11 @@ namespace NEOSxGUI
         {
             base.ViewDidLoad();
         }
+
+
+
+
+
         static System.Timers.Timer timer = new System.Timers.Timer();
         public override void ViewWillAppear()
         {
@@ -134,8 +134,25 @@ namespace NEOSxGUI
 
         partial void exit(NSObject sender)
         {
-            NSApplication.SharedApplication.Terminate(sender);
+            var alert = new NSAlert()
+            {
+                AlertStyle = NSAlertStyle.Warning,
+                InformativeText = $"Are you sure you want to exit? Blockchain syncing will stop.",
+            };
+            alert.AddButton("Cancel");
+            alert.AddButton("Exit");
+
+            alert.BeginSheetForResponse(base.View.Window, (result) =>
+            {
+                if (result == 1001)
+                {
+                    NSApplication.SharedApplication.Terminate(sender);
+                }
+            });
+
+
         }
+
 
         partial void settings(NSObject sender){toSettingsView();}
         private void toSettingsView(){

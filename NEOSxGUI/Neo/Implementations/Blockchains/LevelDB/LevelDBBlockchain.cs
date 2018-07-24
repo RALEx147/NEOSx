@@ -118,7 +118,7 @@ namespace Neo.Implementations.Blockchains.LevelDB
 
         public override bool AddBlock(Block block)
         {
-            
+            Console.WriteLine("in addblock");
             lock (block_cache)
             {
                 if (!block_cache.ContainsKey(block.Hash))
@@ -174,9 +174,6 @@ namespace Neo.Implementations.Blockchains.LevelDB
                     WriteBatch batch = new WriteBatch();
                     foreach (Header header in headers)
                     {
-                        
-
-                        //Console.WriteLine(header_index.ElementAt(0));
                         if (header.Index - 1 >= header_index.Count) break;
                         if (header.Index < header_index.Count) continue;
                         if (VerifyBlocks && !header.Verify()) break;

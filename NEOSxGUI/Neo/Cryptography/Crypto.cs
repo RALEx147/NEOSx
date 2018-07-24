@@ -57,24 +57,42 @@ namespace Neo.Cryptography
             return message.Sha256().Sha256();
         }
 
+       
+
         public byte[] Sign(byte[] message, byte[] prikey, byte[] pubkey)
         {
-            using (var ecdsa = ECDsa.Create(new ECParameters
+            ECPrivateKeyParameters priv = new ECPrivateKeyParameters("ECDSA", (new BigInteger(1, prikey)), _domain);
+            var signer = new ECDsaSigner();
+            var fullsign = new byte[64];
+
+            message = message.Sha256();
+            signer.Init(true, priv);
+            var signature = signer.GenerateSignature(message);
+            var r = signature[0].ToByteArray();
+            var s = signature[1].ToByteArray();
+            var rLen = r.Length;
+            var sLen = s.Length;
+
+            // Buid Signature ensuring Neo expected format. 32byte r + 32byte s.
+            if (rLen < 32)
             {
-                Curve = ECCurve.NamedCurves.nistP256,
-                D = prikey,
-                Q = new ECPoint
-                {
-                    X = pubkey.Take(32).ToArray(),
-                    Y = pubkey.Skip(32).ToArray()
-                }
-            }))
-            {
-                return ecdsa.SignData(message, HashAlgorithmName.SHA256);
+                Array.Copy(r, 0, fullsign, 32 - rLen, rLen);
             }
+            else
+            {
+                Array.Copy(r, rLen - 32, fullsign, 0, 32);
+            }
+            if (sLen < 32)
+            {
+                Array.Copy(s, 0, fullsign, 64 - sLen, sLen);
+            }
+            else
+            {
+                Array.Copy(s, sLen - 32, fullsign, 32, 32);
+            }
+
+            return fullsign;
         }
-
-
 
 
         public bool VerifySignature(byte[] message, byte[] signature, byte[] pubkey)
@@ -187,6 +205,24 @@ namespace Neo.Cryptography
         //    }
 
         //}
+
+        //public byte[] Sign(byte[] message, byte[] prikey, byte[] pubkey)
+        //{
+        //    using (var ecdsa = ECDsa.Create(new ECParameters
+        //    {
+        //        Curve = ECCurve.NamedCurves.nistP256,
+        //        D = prikey,
+        //        Q = new ECPoint
+        //        {
+        //            X = pubkey.Take(32).ToArray(),
+        //            Y = pubkey.Skip(32).ToArray()
+        //        }
+        //    }))
+        //    {
+        //        return ecdsa.SignData(message, HashAlgorithmName.SHA256);
+        //    }
+        //}
+
 
     }
 

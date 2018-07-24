@@ -7,12 +7,14 @@ using AppKit;
 
 namespace NEOSxGUI
 {
-	public partial class windowController : NSWindowController
+    public partial class windowController : NSWindowController
 	{
 		public windowController (IntPtr handle) : base (handle)
 		{
             
 		}
+
+
 
 
 

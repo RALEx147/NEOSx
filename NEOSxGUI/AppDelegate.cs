@@ -26,6 +26,7 @@ namespace NEOSxGUI
 
             NSApplication.SharedApplication.SetTouchBar(NSApplication.SharedApplication.MainWindow.ContentViewController.TouchBar);
         }        
+        
 
         public override void WillTerminate(NSNotification notification)
         {
@@ -37,6 +38,7 @@ namespace NEOSxGUI
             MainClass mc = new MainClass();
             Blockchain.PersistCompleted -= mc.Blockchain_PersistCompleted;
             mc.ChangeWallet(null);
+
         }
 
 

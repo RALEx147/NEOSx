@@ -183,6 +183,7 @@ namespace Neo.Network
                             EnqueueMessage("tx", inventory);
                         break;
                     case InventoryType.Block:
+
                         if (inventory == null && Blockchain.Default != null)
                             inventory = Blockchain.Default.GetBlock(hash);
                         if (inventory != null)
@@ -289,6 +290,7 @@ namespace Neo.Network
 
         private void OnMessageReceived(Message message)
         {
+            Console.WriteLine("message ervc  " + message.Command);
             switch (message.Command)
             {
                 case "addr":

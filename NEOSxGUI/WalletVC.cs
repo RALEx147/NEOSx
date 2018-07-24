@@ -17,14 +17,6 @@ namespace NEOSxGUI
         public override void ViewDidMoveToSuperview()
         {
             base.ViewDidMoveToSuperview();
-
-
-
-
-            DataSource.addresses.Add(new AddressTable("AcvoFQ2oZomVD89zoeWVPauraSuU7w5LiQ"));
-            DataSource.addresses.Add(new AddressTable("AH4wdCHqkQJaQnm5MBmgZwEc8tmGXtTfz7"));
-            DataSource.addresses.Add(new AddressTable("AKSY1L33EuE63Hzcg3XPRHqZgDdDLvyj3P"));
-            DataSource.addresses.Add(new AddressTable("AJMDSEvhCm7XgvTAdseE6SKhuGfffmvLxB"));
             table.DataSource = DataSource;
             table.Delegate = new AddressTableDelegate(this, DataSource);
             table.ReloadData();
@@ -67,17 +59,18 @@ namespace NEOSxGUI
             });
             t.ContinueWith((w) => {
                 var v = w.Result.GetAccounts();
-                foreach (WalletAccount s in v)
-                {
-                    Console.WriteLine(s.Address);
-                }
+
                 //current wallet is w
                 //setup ui with w address
                 //stop loading bar
                 //close poopup
                 BeginInvokeOnMainThread(() =>
                 {
-                    openWallet.Title = "lmao";
+                    foreach (WalletAccount s in v)
+                    {
+                        DataSource.addresses.Add(new AddressTable(s.Address));
+                    }
+                    table.ReloadData();
                 });
             }
             );
